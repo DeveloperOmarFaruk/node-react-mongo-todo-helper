@@ -19,38 +19,38 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  // useEffect(() => {
-  //   const handleContextMenu = (event) => {
-  //     event.preventDefault();
-  //   };
+  useEffect(() => {
+    const handleContextMenu = (event) => {
+      event.preventDefault();
+    };
 
-  //   const handleKeyDown = (event) => {
-  //     // Disable F12
-  //     if (event.keyCode === 123) {
-  //       event.preventDefault();
-  //     }
+    const handleKeyDown = (event) => {
+      // Disable F12
+      if (event.keyCode === 123) {
+        event.preventDefault();
+      }
 
-  //     // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
-  //     if (
-  //       (event.ctrlKey &&
-  //         event.shiftKey &&
-  //         (event.keyCode === 73 ||
-  //           event.keyCode === 74 ||
-  //           event.keyCode === 67)) ||
-  //       (event.ctrlKey && event.keyCode === 85)
-  //     ) {
-  //       event.preventDefault();
-  //     }
-  //   };
+      // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+      if (
+        (event.ctrlKey &&
+          event.shiftKey &&
+          (event.keyCode === 73 ||
+            event.keyCode === 74 ||
+            event.keyCode === 67)) ||
+        (event.ctrlKey && event.keyCode === 85)
+      ) {
+        event.preventDefault();
+      }
+    };
 
-  //   document.addEventListener("contextmenu", handleContextMenu);
-  //   document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
 
-  //   return () => {
-  //     document.removeEventListener("contextmenu", handleContextMenu);
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
