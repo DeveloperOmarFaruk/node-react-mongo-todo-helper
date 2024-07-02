@@ -191,11 +191,7 @@ const useFirebase = () => {
   // ====================================================
 
   const handleFetchUser = async () => {
-    const res = await axios.get(`${URL}/users?email=${userInfo.email}`, {
-      headers: {
-        authorization: `Bearer ${authToken}`,
-      },
-    });
+    const res = await axios.get(`${URL}/users`);
 
     try {
       const result = await res.data;
@@ -207,7 +203,7 @@ const useFirebase = () => {
 
   useEffect(() => {
     handleFetchUser();
-  }, [userInfo.email, authToken]);
+  }, []);
 
   // ====================================================
   //  Users Role Create Functionality

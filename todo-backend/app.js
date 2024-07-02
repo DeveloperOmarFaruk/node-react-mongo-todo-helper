@@ -51,10 +51,8 @@ async function run() {
     // Users GET API Method
     // ==========================
 
-    app.get("/users", verifyToken, async (req, res) => {
-      const email = req.query.email;
-      const query = { email: email };
-      const cursor = usersCollection.find(query);
+    app.get("/users", async (req, res) => {
+      const cursor = usersCollection.find({});
       const result = await cursor.toArray();
       res.send(result);
     });
