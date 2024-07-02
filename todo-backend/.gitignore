@@ -1,0 +1,7 @@
+# dependencies
+/node_modules
+
+# misc
+.env
+.vercel
+todo-helper-5100d-firebase-adminsdk.json
