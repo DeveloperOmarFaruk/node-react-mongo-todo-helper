@@ -205,79 +205,83 @@ const Incomplete = () => {
                   <Loading />
                 </div>
               ) : (
-                <table className="table">
-                  <thead>
-                    <th>S.No.</th>
-                    <th>Date</th>
-                    <th>Title</th>
-                    <th>Details</th>
-                    <th>Action</th>
-                  </thead>
+                <>
+                  <table className="table">
+                    <thead>
+                      <th>S.No.</th>
+                      <th>Date</th>
+                      <th>Title</th>
+                      <th>Details</th>
+                      <th>Action</th>
+                    </thead>
 
-                  <tbody>
-                    {todos &&
-                      todos
-                        .filter((item) => {
-                          if (currentDate) {
-                            return item.date === currentDate;
-                          } else return item;
-                        })
+                    <tbody>
+                      {todos &&
+                        todos
+                          .filter((item) => {
+                            if (currentDate) {
+                              return item.date === currentDate;
+                            } else return item;
+                          })
 
-                        .slice(indexOfFirstPost, indexOfLastPost)
+                          .slice(indexOfFirstPost, indexOfLastPost)
 
-                        .filter((item) => {
-                          if (searchTitle === "") {
-                            return item;
-                          } else {
-                            return item.title
-                              .toLowerCase()
-                              .includes(searchTitle.toLowerCase());
-                          }
-                        })
+                          .filter((item) => {
+                            if (searchTitle === "") {
+                              return item;
+                            } else {
+                              return item.title
+                                .toLowerCase()
+                                .includes(searchTitle.toLowerCase());
+                            }
+                          })
 
-                        .map((item, index) => (
-                          <tr className="align-middle" key={item.id}>
-                            <td data-label="S. No.">{index + 1}</td>
-                            <td data-label="Date">
-                              {handleDateStringfy(item.date)}
-                            </td>
-                            <td data-label="Title">{item.title}</td>
-                            <td data-label="Details">
-                              <button
-                                type="button"
-                                className="btn text-white pt-1 pb-1"
-                                onClick={() => handleTodoGet(item.id)}
-                                data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"
-                                style={{ backgroundColor: "#0badce" }}
-                              >
-                                View
-                              </button>
-                            </td>
+                          .map((item, index) => (
+                            <tr className="align-middle" key={item.id}>
+                              <td data-label="S. No.">{index + 1}</td>
+                              <td data-label="Date">
+                                {handleDateStringfy(item.date)}
+                              </td>
+                              <td data-label="Title">{item.title}</td>
+                              <td data-label="Details">
+                                <button
+                                  type="button"
+                                  className="btn text-white pt-1 pb-1"
+                                  onClick={() => handleTodoGet(item.id)}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#staticBackdrop"
+                                  style={{ backgroundColor: "#0badce" }}
+                                >
+                                  View
+                                </button>
+                              </td>
 
-                            <td data-label="Action">
-                              <i
-                                className="fa-regular fa-square-check"
-                                onClick={() => handleTodoComplete(item.id)}
-                                style={{
-                                  color: "#0dcaf0",
-                                  cursor: "pointer",
+                              <td data-label="Action">
+                                <i
+                                  className="fa-regular fa-square-check"
+                                  onClick={() => handleTodoComplete(item.id)}
+                                  style={{
+                                    color: "#0dcaf0",
+                                    cursor: "pointer",
 
-                                  fontSize: "20px",
-                                }}
-                              ></i>
-                            </td>
-                          </tr>
-                        ))}
-                  </tbody>
-                </table>
-              )}
+                                    fontSize: "20px",
+                                  }}
+                                ></i>
+                              </td>
+                            </tr>
+                          ))}
+                    </tbody>
+                  </table>
 
-              {filterDateData.length > 7 && (
-                <Pagination
-                  pageCount={Math.ceil(filterDateData.length / postsPerPage)}
-                  handlePageClick={handlePageClick}
-                />
+                  {filterDateData.length > 7 && (
+                    <Pagination
+                      pageCount={Math.ceil(
+                        filterDateData.length / postsPerPage
+                      )}
+                      handlePageClick={handlePageClick}
+                    />
+                  )}
+                </>
               )}
             </>
           )}
