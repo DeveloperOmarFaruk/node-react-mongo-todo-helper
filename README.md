@@ -43,18 +43,18 @@ The Todo application has been worked on in this repository. Users can register o
 #
 ### `Project Pages`
 #
-1. User Profile Page
-2. Dashboard Page
-3. Todo List Page
-4. Todo Complete
-5. Todo Incomplete
-6. Todo Add Page
-7. Todo Update Page
-9. Users (Admin) Page
-10. Login Page
-11. Register Page
-12. Forgot Password Page
-13. Error Page
+- User Profile Page
+- Dashboard Page
+- Todo List Page
+- Todo Complete
+- Todo Incomplete
+- Todo Add Page
+- Todo Update Page
+- Users (Admin) Page
+- Login Page
+- Register Page
+- Forgot Password Page
+- Error Page
 
 
 #
