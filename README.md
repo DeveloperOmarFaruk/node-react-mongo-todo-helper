@@ -48,11 +48,13 @@ The Todo application has been worked on in this repository. Users can register o
 3. Todo List Page
 4. Todo Complete
 5. Todo Incomplete
-6. Users (Admin) Page
-7. Login Page
-8. Register Page
-9. Forgot Password Page
-10. Error Page
+6. Todo Add Page
+7. Todo Update Page
+9. Users (Admin) Page
+10. Login Page
+11. Register Page
+12. Forgot Password Page
+13. Error Page
 
 
 #
@@ -79,16 +81,31 @@ The Todo application has been worked on in this repository. Users can register o
 
 
 #
-### `Todo Complete`
+### `Todo Complete Page`
 #
 
 ![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/a9704d5c-6212-43e1-8084-0a3f1a028822)
 
 
 #
-### `Todo Incomplete`
+### `Todo Incomplete Page`
 #
 ![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/cf34a418-b37d-4fd8-a00c-44a7ba32a833)
+
+#
+### `Todo Add Page`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/007d37ea-2248-481a-9238-560499077c3c)
+
+#
+### `Todo Update Page`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/b18e9817-d14d-4754-aa69-c9d088c9d837)
+
+#
+### `Todo Details View`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/afdacd89-7f3c-45a3-85d5-efa63fa1cde8)
 
 #
 ### `Users (Admin) Page`
