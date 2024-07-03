@@ -73,7 +73,8 @@ The Todo application has been worked on in this repository. Users can register o
 #
 ### `Todo List Page`
 #
-![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/1379c904-d0ab-44df-a4df-f0b2624393b7)
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/87cd4642-7a2a-4521-9c3a-871cf1eac113)
+
 
 
 
