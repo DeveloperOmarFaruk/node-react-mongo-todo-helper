@@ -8,7 +8,6 @@ import {
   updateProfile,
   getIdToken,
   sendPasswordResetEmail,
-  fetchSignInMethodsForEmail,
 } from "firebase/auth";
 import FirebaseInitilaiz from "../Firebase/FirebaseInitilaiz";
 import { useNavigate } from "react-router";
@@ -58,37 +57,29 @@ const useFirebase = () => {
       return;
     }
 
-    try {
-      const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-      if (signInMethods.length > 0) {
-        toast.error("Email already in use");
-      } else {
-        await createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            const newUser = { email, displayName: name };
-            const role = "user";
-            setUserInfo(newUser);
-            saveUserDB(email, name, role);
-            updateProfile(auth.currentUser, {
-              displayName: name,
-            })
-              .then(() => {})
-              .catch((error) => {});
-            toast.success("Register Successful");
-            navigate(`/`);
-            setFormData({
-              name: "",
-              email: "",
-              password: "",
-            });
-          })
-          .catch((error) => {
-            setError(error.message);
-          });
-      }
-    } catch (error) {
-      setError(error.message);
-    }
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const newUser = { email, displayName: name };
+        const role = "user";
+        setUserInfo(newUser);
+        saveUserDB(email, name, role);
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
+          .then(() => {})
+          .catch((error) => {});
+        toast.success("Register Successful");
+        navigate(`/`);
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        setError(error.message);
+        toast.error("Email already in used");
+      });
 
     setLoading(true);
   };
@@ -134,6 +125,7 @@ const useFirebase = () => {
       })
       .catch((error) => {
         setError(error.message);
+        toast.error("Your Email or Password is wrong");
       });
     setLoading(true);
   };
