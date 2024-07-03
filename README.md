@@ -37,8 +37,8 @@ The Todo application has been worked on in this repository. Users can register o
 #
 ### `Project Deploy`
 #
-Frontend: Netlify
-Backend: Vercel
+- Frontend: Netlify
+- Backend: Vercel
 
 #
 ### `Project Pages`
