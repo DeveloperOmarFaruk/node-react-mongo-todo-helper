@@ -4,8 +4,7 @@
 #
 ## Project Details
 #
-The Todo application has been worked on in this repository. User can register or log in Todo the application. User can add, update, delete and complete todo list. User can see how many todos are completing and how many are incomplete.
-User can filter by todo list date or todo title. Users can see summary of user todo list by going to dashboard.
+The Todo application has been worked on in this repository. Users can register or log in Todo the application. Users can add, update, delete, and complete todo list. Users can see how many todos are completed and how many are incomplete. Users can filter by todo list date or todo title. Users can see a summary of the user todo list by going to the dashboard.
 #
 ### `Technology Use`
 #
@@ -16,49 +15,102 @@ User can filter by todo list date or todo title. Users can see summary of user t
 5. React Hooks
 6. React Router
 7. React Router Dom
-8. Axios
-9. RESTful APIs
-10. MockAPI.io
-11. HTML5
-12. Bootstrap5
-13. Font Awesome
+8. Protected Route
+9. Axios
+10. RESTful APIs
+11. React Paginate
+12. React Apexcharts
+13. React Toastify
+14. Firebase
+15. HTML5
+16. Bootstrap5
+17. Font Awesome
+18. Node JS
+19. Express JS
+20. Cors
+21. Nodemon
+22. Dotenv
+23. MongoDB
+24. Firebase JWT Token
+25. Firebase Admin
 
 #
 ### `Project Deploy`
 #
-Netlify
+Frontend: Netlify
+Backend: Vercel
 
 #
 ### `Project Pages`
 #
-1. Employee List Page
-2. Employee Add Page
-3. Employee Update Page
-4. Error Page
+1. User Profile Page
+2. Dashboard Page
+3. Todo List Page
+4. Todo Complete
+5. Todo Incomplete
+6. Users (Admin) Page
+7. Login Page
+8. Register Page
+9. Forgot Password Page
+10. Error Page
 
 
 #
-### `Employee List Page`
+### `User Profile Page`
 #
 
-![image](https://github.com/DeveloperOmarFaruk/react-redux-crud/assets/75971859/cedb1f8b-612a-4825-8e55-94b290f45220)
+
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/91cf689f-aa5f-4a86-90ec-037229244df1)
 
 
 
 #
-### `Employee Add Page`
+### `Dashboard Page`
 #
-![image](https://github.com/DeveloperOmarFaruk/react-redux-crud/assets/75971859/05e66581-e0c2-4549-b78e-f30ae7d613a7)
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/63ee3d38-0a2d-4bca-bdac-7f79278e7f6c)
+
 
 #
-### `Employee Update Page`
+### `Todo List Page`
 #
-![image](https://github.com/DeveloperOmarFaruk/react-redux-crud/assets/75971859/81ff2cfe-a465-4ed2-bf88-c748d18c9e38)
 
+
+
+#
+### `Todo Complete`
+#
+
+
+
+#
+### `Todo Incomplete`
+#
+
+#
+### `Users (Admin) Page`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/c25ce2c6-a557-4ade-ba6e-f50a0d457ceb)
+
+#
+### `Login Page`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/6aa7ea2f-ec35-4294-9f51-ace5d366f397)
+
+
+#
+### `Register Page`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/9042de57-b1b3-4f04-8982-015020932c52)
+
+#
+### `Forgot Password Page`
+#
+![image](https://github.com/DeveloperOmarFaruk/node-react-mongo-todo-helper/assets/75971859/459eb7b2-fc2e-4e72-ac2d-e8cc0c4367b7)
 
 #
 ### `Error Page`
 #
-![image](https://github.com/DeveloperOmarFaruk/react-redux-crud/assets/75971859/cb622e9a-9268-4caf-a373-c017780bdade)
+
+
 
 #
