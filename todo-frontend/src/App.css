@@ -178,6 +178,7 @@ body {
   border-radius: 10px;
   border: none;
   padding: 1rem 1rem;
+  height: 9rem;
 }
 
 .dashboard-info-card h4 {

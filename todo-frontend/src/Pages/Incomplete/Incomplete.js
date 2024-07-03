@@ -26,31 +26,36 @@ const Incomplete = () => {
   // Todo List Get Data Functionality
   // =================================
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await axios.get(`${URL}/todo-list?email=${userInfo.email}`, {
+    setLoading(true);
+    axios
+      .get(`${URL}/todo-list?email=${userInfo.email}`, {
         headers: {
           authorization: `Bearer ${authToken}`,
         },
-      });
-      try {
-        const result = await res.data;
+      })
+      .then((res) => {
+        const result = res.data;
         dispatch(getTodos(result));
         setLoading(false);
-      } catch (error) {
+      })
+      .catch(function (error) {
         console.log(error);
-      }
-    };
-
-    fetchData();
+      });
   }, [dispatch, URL, authToken, userInfo.email]);
 
   // =======================
   // Todo data find by id
   // =======================
-  const handleTodoGet = async (id) => {
-    const findData = todos.find((item) => item.id === id);
-    setTodo(findData);
+  const handleTodoGet = (id) => {
+    axios
+      .get(`${URL}/todo-list/${id}`)
+      .then((res) => {
+        const result = res.data;
+        setTodo(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   // ======================================
@@ -85,22 +90,22 @@ const Incomplete = () => {
   // Todo List Delete Functionality
   // =================================
 
-  const handleTodoDelete = async (id) => {
-    const res = await axios.delete(`${URL}/todo-list/${id}`);
-    try {
-      if (res) {
+  const handleTodoDelete = (id) => {
+    axios
+      .delete(`${URL}/todo-list/${id}`)
+      .then((res) => {
         dispatch(deleteTodos({ id }));
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   // =================================
   // Todo List Complete Functionality
   // =================================
 
-  const handleTodoComplete = async (id) => {
+  const handleTodoComplete = (id) => {
     const findData = todos.find((item) => item.id === id);
     const today = new Date();
     const formattedDate = today.toISOString().substr(0, 10);
@@ -110,13 +115,15 @@ const Incomplete = () => {
       title: findData.title,
       details: findData.details,
     };
-    const res = await axios.post(`${URL}/todo-complete`, addCompeleteData);
-    try {
-      const result = await res.data;
-      dispatch(addTodosComplete(result));
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .post(`${URL}/todo-complete`, addCompeleteData)
+      .then((res) => {
+        const result = res.data;
+        dispatch(addTodosComplete(result));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     toast.success("Todo Complete Successful");
     handleTodoDelete(id);
   };
@@ -194,7 +201,7 @@ const Incomplete = () => {
         </div>
 
         <div style={{ margin: "2rem 0rem" }}>
-          {todos.length === 0 ? (
+          {filterDateData.length === 0 ? (
             <>
               <h5 className="text-center text-white">No Data</h5>
             </>
@@ -216,8 +223,8 @@ const Incomplete = () => {
                     </thead>
 
                     <tbody>
-                      {todos &&
-                        todos
+                      {filterDateData &&
+                        filterDateData
                           .filter((item) => {
                             if (currentDate) {
                               return item.date === currentDate;
@@ -257,16 +264,20 @@ const Incomplete = () => {
                               </td>
 
                               <td data-label="Action">
-                                <i
-                                  className="fa-regular fa-square-check"
+                                <button
+                                  type="button"
+                                  className="btn"
                                   onClick={() => handleTodoComplete(item.id)}
-                                  style={{
-                                    color: "#0dcaf0",
-                                    cursor: "pointer",
-
-                                    fontSize: "20px",
-                                  }}
-                                ></i>
+                                  style={{ backgroundColor: "none" }}
+                                >
+                                  <i
+                                    className="fa-regular fa-square-check"
+                                    style={{
+                                      color: "#0dcaf0",
+                                      fontSize: "20px",
+                                    }}
+                                  ></i>
+                                </button>
                               </td>
                             </tr>
                           ))}

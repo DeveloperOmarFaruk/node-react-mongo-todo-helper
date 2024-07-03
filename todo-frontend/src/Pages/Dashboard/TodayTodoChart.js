@@ -13,22 +13,22 @@ const TodayTodoChart = ({ todosFilter, todosCompleteFilter }) => {
     },
     colors: ["#3498DB", "#EC7063"],
     labels: ["Todo Complete", "Todo Incomplete"],
-    title: {
-      text: "Today's Todo Chart",
-      style: {
-        fontSize: "23px",
-      },
-    },
+    // title: {
+    //   text: "Today's Todo Chart",
+    //   style: {
+    //     fontSize: "23px",
+    //   },
+    // },
     legend: {
       position: "left",
-      offsetY: 40,
+      offsetY: 0,
     },
     responsive: [
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200,
+            width: 300,
           },
           legend: {
             position: "bottom",

@@ -30,34 +30,36 @@ const Complete = () => {
   // Todo List Get Data Functionality
   // =================================
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await axios.get(
-        `${URL}/todo-complete?email=${userInfo.email}`,
-        {
-          headers: {
-            authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
-      try {
-        const result = await res.data;
+    setLoading(true);
+    axios
+      .get(`${URL}/todo-complete?email=${userInfo.email}`, {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => {
+        const result = res.data;
         dispatch(getTodosComplete(result));
         setLoading(false);
-      } catch (error) {
+      })
+      .catch(function (error) {
         console.log(error);
-      }
-    };
-
-    fetchData();
+      });
   }, [dispatch, URL, userInfo.email, authToken]);
 
   // =======================
   // Todo data find by id
   // =======================
   const handleTodoGet = async (id) => {
-    const findData = todosComplete.find((item) => item.id === id);
-    setTodo(findData);
+    axios
+      .get(`${URL}/todo-complete/${id}`)
+      .then((res) => {
+        const result = res.data;
+        setTodo(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   // ======================================
@@ -92,16 +94,15 @@ const Complete = () => {
   // Todo List Delete Functionality
   // =================================
 
-  const handleTodoDelete = async (id) => {
-    const res = await axios.delete(`${URL}/todo-complete/${id}`);
-    try {
-      if (res) {
+  const handleTodoDelete = (id) => {
+    axios
+      .delete(`${URL}/todo-complete/${id}`)
+      .then((res) => {
         dispatch(deleteTodosComplete({ id }));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     toast.success("Todo Delete Successful");
   };
 
@@ -180,7 +181,7 @@ const Complete = () => {
         </div>
 
         <div style={{ margin: "2rem 0rem" }}>
-          {todosComplete.length === 0 ? (
+          {filterDateData.length === 0 ? (
             <>
               <h5 className="text-center text-white">No Data</h5>
             </>
@@ -230,9 +231,9 @@ const Complete = () => {
                                 <button
                                   type="button"
                                   className="btn text-white pt-1 pb-1"
-                                  onClick={() => handleTodoGet(item.id)}
                                   data-bs-toggle="modal"
                                   data-bs-target="#staticBackdrop"
+                                  onClick={() => handleTodoGet(item.id)}
                                   style={{ backgroundColor: "#0badce" }}
                                 >
                                   View
@@ -240,15 +241,19 @@ const Complete = () => {
                               </td>
 
                               <td data-label="Action">
-                                <i
-                                  className="fa-solid fa-trash"
+                                <button
+                                  type="button"
+                                  className="btn"
                                   onClick={() => handleTodoDelete(item.id)}
-                                  style={{
-                                    color: "#1c2833",
-                                    cursor: "pointer",
-                                    fontSize: "20px",
-                                  }}
-                                ></i>
+                                  style={{ backgroundColor: "none" }}
+                                >
+                                  <i
+                                    className="fa-solid fa-trash"
+                                    style={{
+                                      fontSize: "20px",
+                                    }}
+                                  ></i>
+                                </button>
                               </td>
                             </tr>
                           ))}

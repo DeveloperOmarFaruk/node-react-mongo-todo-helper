@@ -26,31 +26,54 @@ const TodoList = () => {
   // Todo List Get Data Functionality
   // =================================
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await axios.get(`${URL}/todo-list?email=${userInfo.email}`, {
+    // const fetchData = async () => {
+    //   setLoading(true);
+    //   const res = await axios.get(`${URL}/todo-list?email=${userInfo.email}`, {
+    //     headers: {
+    //       authorization: `Bearer ${authToken}`,
+    //     },
+    //   });
+    //   try {
+    //     const result = await res.data;
+    //     dispatch(getTodos(result));
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+
+    // fetchData();
+
+    setLoading(true);
+    axios
+      .get(`${URL}/todo-list?email=${userInfo.email}`, {
         headers: {
           authorization: `Bearer ${authToken}`,
         },
-      });
-      try {
-        const result = await res.data;
+      })
+      .then((res) => {
+        const result = res.data;
         dispatch(getTodos(result));
         setLoading(false);
-      } catch (error) {
+      })
+      .catch(function (error) {
         console.log(error);
-      }
-    };
-
-    fetchData();
+      });
   }, [dispatch, URL, authToken, userInfo.email]);
 
   // =======================
   // Todo data find by id
   // =======================
   const handleTodoGet = async (id) => {
-    const findData = todos.find((item) => item.id === id);
-    setTodo(findData);
+    axios
+      .get(`${URL}/todo-list/${id}`)
+      .then((res) => {
+        const result = res.data;
+        setTodo(result);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   // ======================================
@@ -86,14 +109,14 @@ const TodoList = () => {
   // =================================
 
   const handleTodoDelete = async (id) => {
-    const res = await axios.delete(`${URL}/todo-list/${id}`);
-    try {
-      if (res) {
+    axios
+      .delete(`${URL}/todo-list/${id}`)
+      .then((res) => {
         dispatch(deleteTodos({ id }));
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     toast.success("Todo Delete Successful");
   };
 
@@ -101,7 +124,7 @@ const TodoList = () => {
   // Todo List Complete Functionality
   // =================================
 
-  const handleTodoComplete = async (id) => {
+  const handleTodoComplete = (id) => {
     const findData = todos.find((item) => item.id === id);
     const today = new Date();
     const formattedDate = today.toISOString().substr(0, 10);
@@ -111,13 +134,15 @@ const TodoList = () => {
       title: findData.title,
       details: findData.details,
     };
-    const res = await axios.post(`${URL}/todo-complete`, addCompeleteData);
-    try {
-      const result = await res.data;
-      dispatch(addTodosComplete(result));
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .post(`${URL}/todo-complete`, addCompeleteData)
+      .then((res) => {
+        const result = res.data;
+        dispatch(addTodosComplete(result));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     toast.success("Todo Complete Successful");
     handleTodoDelete(id);
   };
@@ -206,7 +231,7 @@ const TodoList = () => {
         </div>
 
         <div style={{ margin: "2rem 0rem" }}>
-          {todos.length === 0 ? (
+          {filterDateData.length === 0 ? (
             <>
               <h5 className="text-center text-white">No Data</h5>
             </>
@@ -228,8 +253,8 @@ const TodoList = () => {
                     </thead>
 
                     <tbody>
-                      {todos &&
-                        todos
+                      {filterDateData &&
+                        filterDateData
 
                           .filter((item) => {
                             if (currentDate) {
@@ -268,40 +293,62 @@ const TodoList = () => {
                               </td>
 
                               <td data-label="Action" className="text-center">
-                                <i
-                                  className="fa-solid fa-pen-to-square"
+                                <button
+                                  type="button"
+                                  className="btn"
                                   onClick={() =>
                                     navigate(`/update-todo/${item.id}`)
                                   }
                                   style={{
-                                    color: "#20c997",
-                                    cursor: "pointer",
-                                    fontSize: "20px",
-                                    margin: "10px 20px",
+                                    backgroundColor: "none",
+                                    margin: "5px 5px",
                                   }}
-                                ></i>
+                                >
+                                  <i
+                                    className="fa-solid fa-pen-to-square"
+                                    style={{
+                                      color: "#20c997",
 
-                                <i
-                                  className="fa-solid fa-trash"
+                                      fontSize: "20px",
+                                    }}
+                                  ></i>
+                                </button>
+
+                                <button
+                                  type="button"
+                                  className="btn"
                                   onClick={() => handleTodoDelete(item.id)}
                                   style={{
-                                    color: "#1c2833",
-                                    cursor: "pointer",
-                                    margin: "10px 20px",
-                                    fontSize: "20px",
+                                    backgroundColor: "none",
+                                    margin: "5px 5px",
                                   }}
-                                ></i>
+                                >
+                                  <i
+                                    className="fa-solid fa-trash"
+                                    style={{
+                                      color: "#1c2833",
+                                      fontSize: "20px",
+                                    }}
+                                  ></i>
+                                </button>
 
-                                <i
-                                  className="fa-regular fa-square-check"
+                                <button
+                                  type="button"
+                                  className="btn"
                                   onClick={() => handleTodoComplete(item.id)}
                                   style={{
-                                    color: "#0dcaf0",
-                                    cursor: "pointer",
-                                    margin: "10px 20px",
-                                    fontSize: "20px",
+                                    backgroundColor: "none",
+                                    margin: "5px 5px",
                                   }}
-                                ></i>
+                                >
+                                  <i
+                                    className="fa-regular fa-square-check"
+                                    style={{
+                                      color: "#0dcaf0",
+                                      fontSize: "20px",
+                                    }}
+                                  ></i>
+                                </button>
                               </td>
                             </tr>
                           ))}

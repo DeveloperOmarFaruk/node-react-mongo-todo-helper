@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
 import useFirebase from "../../Hooks/useFirebase";
 
 const Home = () => {
-  const [isOpen, setIsopen] = useState(true);
+  const [isOpen, setIsopen] = useState();
   const { userInfo, adminEmail, handleLogout } = useFirebase();
   const ToggleSidebar = () => {
     isOpen === true ? setIsopen(false) : setIsopen(true);
   };
+
+  useEffect(() => {
+    if (window.innerWidth <= 820) {
+      return setIsopen(false);
+    } else {
+      return setIsopen(true);
+    }
+  }, []);
+
   return (
     <>
       <div>

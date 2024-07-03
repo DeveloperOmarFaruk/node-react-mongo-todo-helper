@@ -17,6 +17,7 @@ import AddTodoList from "./Pages/TodoList/AddTodoList";
 import UpdateTodoList from "./Pages/TodoList/UpdateTodoList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error from "./Error/Error";
 
 function App() {
   useEffect(() => {
@@ -136,6 +137,8 @@ function App() {
               }
             />
           </Route>
+
+          <Route path="*" element={<Error />} />
         </Routes>
       </Router>
 

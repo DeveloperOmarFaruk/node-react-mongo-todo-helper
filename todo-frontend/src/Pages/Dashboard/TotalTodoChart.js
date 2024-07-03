@@ -11,22 +11,23 @@ const TotalTodoChart = ({ todos, todosComplete }) => {
     },
     colors: ["#A569BD", "#DC7633"],
     labels: ["Total Todo Complete", "Total Todo Incomplete"],
-    title: {
-      text: "Total Todo Chart",
-      style: {
-        fontSize: "23px",
-      },
-    },
+    // title: {
+    //   text: "Total Todo Chart",
+    //   style: {
+    //     fontSize: "23px",
+    //     marginBottom: "40px",
+    //   },
+    // },
     legend: {
       position: "left",
-      offsetY: 40,
+      offsetY: 0,
     },
     responsive: [
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200,
+            width: 300,
           },
           legend: {
             position: "bottom",

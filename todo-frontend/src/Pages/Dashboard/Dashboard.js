@@ -23,23 +23,39 @@ const Dashboard = () => {
   // Todo List Get Data Functionality
   // =================================
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await axios.get(`${URL}/todo-list?email=${userInfo.email}`, {
+    // const fetchData = async () => {
+    //   setLoading(true);
+    //   const res = await axios.get(`${URL}/todo-list?email=${userInfo.email}`, {
+    //     headers: {
+    //       authorization: `Bearer ${authToken}`,
+    //     },
+    //   });
+    //   try {
+    //     const result = await res.data;
+    //     dispatch(getTodos(result));
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+
+    // fetchData();
+
+    setLoading(true);
+    axios
+      .get(`${URL}/todo-list?email=${userInfo.email}`, {
         headers: {
           authorization: `Bearer ${authToken}`,
         },
-      });
-      try {
-        const result = await res.data;
+      })
+      .then((res) => {
+        const result = res.data;
         dispatch(getTodos(result));
         setLoading(false);
-      } catch (error) {
+      })
+      .catch(function (error) {
         console.log(error);
-      }
-    };
-
-    fetchData();
+      });
   }, [dispatch, URL, authToken, userInfo.email]);
 
   const todosFilter = todos.filter((item) => item.date === currentDate);
@@ -48,26 +64,42 @@ const Dashboard = () => {
   // Todo Complete List Get Data Functionality
   // ==========================================
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const res = await axios.get(
-        `${URL}/todo-complete?email=${userInfo.email}`,
-        {
-          headers: {
-            authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
-      try {
-        const result = await res.data;
+    // const fetchData = async () => {
+    //   setLoading(true);
+    //   const res = await axios.get(
+    //     `${URL}/todo-complete?email=${userInfo.email}`,
+    //     {
+    //       headers: {
+    //         authorization: `Bearer ${authToken}`,
+    //       },
+    //     }
+    //   );
+    //   try {
+    //     const result = await res.data;
+    //     dispatch(getTodosComplete(result));
+    //     setLoading(false);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+
+    // fetchData();
+
+    setLoading(true);
+    axios
+      .get(`${URL}/todo-complete?email=${userInfo.email}`, {
+        headers: {
+          authorization: `Bearer ${authToken}`,
+        },
+      })
+      .then((res) => {
+        const result = res.data;
         dispatch(getTodosComplete(result));
         setLoading(false);
-      } catch (error) {
+      })
+      .catch(function (error) {
         console.log(error);
-      }
-    };
-
-    fetchData();
+      });
   }, [dispatch, URL, authToken, userInfo.email]);
 
   // ============================================
@@ -174,7 +206,7 @@ const Dashboard = () => {
             <div style={{ margin: "2rem 0rem 3rem 0rem" }}>
               <div className="row gy-5">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                  {/* <h3>Column Left</h3> */}
+                  <h4 className="text-white mt-4 mb-4">Total Todo Chart</h4>
                   <div style={{ margin: "1.8rem 0rem" }}>
                     <TotalTodoChart
                       todos={todos}
@@ -184,7 +216,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                  {/* <h4 className="text-white mt-4 mb-4">Today's Todo Chart</h4> */}
+                  <h4 className="text-white mt-4 mb-4">Today's Todo Chart</h4>
 
                   <div style={{ margin: "1.8rem 0rem" }}>
                     <TodayTodoChart
